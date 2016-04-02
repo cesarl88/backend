@@ -824,6 +824,25 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
 		});
 	});*/
 
+	/**
+	 * Get List of courses created by the given instructor ID
+	 * Issue # 15
+	 * Cesar Salazar
+
+	 */
+	router.get("/getCourseCreated/:instructorID",function(req, res){
+
+
+
+		Course.findAll({where: {CreatorID: req.params.instructorID}}).then(function (Courses) {
+
+			console.log("/getCourseCreated/ Courses found");
+			res.json({"Error": true, "Courses": Courses});
+
+
+		});
+	});
+
 }
 
 module.exports = REST_ROUTER;
